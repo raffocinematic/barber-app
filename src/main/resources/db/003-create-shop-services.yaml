@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-shop-services
+      author: raffo
+      changes:
+        - createTable:
+            tableName: shop_services
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: category
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: VARCHAR(80)
+                  constraints:
+                    nullable: false
+
+        - addUniqueConstraint:
+            tableName: shop_services
+            columnNames: category, name
+            constraintName: uq_shop_services_category_name

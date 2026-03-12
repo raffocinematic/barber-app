@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="sidebar(active)">
+    <!-- Top bar -->
+    <header class="topbar">
+        <button class="icon-btn" type="button" onclick="toggleSidebar()" aria-label="Open menu">
+            ☰
+        </button>
+        <div class="topbar-title">Barber App</div>
+    </header>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div class="brand-mini">
+                <div class="brand-badge"><span>BA</span></div>
+                <div>
+                    <div class="brand-name">Barber App</div>
+                    <div class="brand-sub">Men’s grooming</div>
+                </div>
+            </div>
+
+            <button class="icon-btn" type="button" onclick="closeSidebar()" aria-label="Close menu">
+                ✕
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a th:href="@{/about}" th:classappend="${active == 'about'} ? ' active' : ''">About us</a>
+            <a th:href="@{/services}" th:classappend="${active == 'services'} ? ' active' : ''">I nostri servizi</a>
+            <a th:href="@{/booking}" th:classappend="${active == 'booking'} ? ' active' : ''">Prenota con noi</a>
+        </nav>
+    </aside>
+
+    <script th:src="@{/js/sidebar.js}"></script>
+</div>
+
+</body>
+</html>

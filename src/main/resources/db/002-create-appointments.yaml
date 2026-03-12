@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-create-appointments
+      author: raffo
+      changes:
+        - createTable:
+            tableName: appointments
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: date
+                  type: DATE
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: start_time
+                  type: TIME
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: service_type
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: appointments
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_appointments_user
+
+        # opzionale ma consigliato: impedisce doppia prenotazione stesso slot
+        - addUniqueConstraint:
+            tableName: appointments
+            columnNames: date, start_time
+            constraintName: uq_appointments_slot

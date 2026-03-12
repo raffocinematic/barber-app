@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 010-remove-email-auth-columns-from-users
+      author: raffo
+      changes:
+        - dropUniqueConstraint:
+            tableName: users
+            constraintName: uq_users_email
+
+        - dropColumn:
+            tableName: users
+            columnName: email
+
+        - dropColumn:
+            tableName: users
+            columnName: enabled
+
+        - dropColumn:
+            tableName: users
+            columnName: email_verified

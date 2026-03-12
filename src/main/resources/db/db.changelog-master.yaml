@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - include:
+      file: 001-create-users.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: 002-create-appointments.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: 003-create-shop-services.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: 004-seed-shop-services.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: 005-add-details-to-shop-services.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: 006-update-shop-services-details.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: 007-alter-users-for-email-auth.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: 008-create-verification-tokens.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: 009-drop-verification-tokens.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: 010-remove-email-auth-columns-from-users.yaml
+      relativeToChangelogFile: true

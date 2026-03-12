@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>I nostri servizi</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/barber.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar('services')}"></div>
+
+<div class="page">
+    <div class="services-card">
+
+        <h1>I nostri servizi</h1>
+        <p class="subtitle">
+            Tradizione, precisione e stile. Scegli il tuo trattamento.
+        </p>
+
+        <div class="services-grid">
+
+            <div class="service-column">
+                <h3>Capelli</h3>
+
+                <div th:each="s : ${hair}" class="service-item">
+                    <details>
+                        <summary th:text="${s.name}"></summary>
+
+                        <div class="service-details">
+                            <img th:if="${s.imagePath != null}"
+                                 th:src="@{${s.imagePath}}"
+                                 th:alt="${s.name}"
+                                 class="service-image">
+
+                            <p th:text="${s.description}"></p>
+
+                            <p>
+                                <strong>Durata:</strong>
+                                <span th:text="${s.durationMinutes}"></span> min
+                            </p>
+
+                            <p>
+                                <strong>Prezzo:</strong>
+                                € <span th:text="${s.price}"></span>
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="service-column">
+                <h3>Barba</h3>
+
+                <div th:each="s : ${beard}" class="service-item">
+                    <details>
+                        <summary th:text="${s.name}"></summary>
+
+                        <div class="service-details">
+                            <img th:if="${s.imagePath != null}"
+                                 th:src="@{${s.imagePath}}"
+                                 th:alt="${s.name}"
+                                 class="service-image">
+
+                            <p th:text="${s.description}"></p>
+
+                            <p>
+                                <strong>Durata:</strong>
+                                <span th:text="${s.durationMinutes}"></span> min
+                            </p>
+
+                            <p>
+                                <strong>Prezzo:</strong>
+                                € <span th:text="${s.price}"></span>
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="service-column">
+                <h3>Trattamenti Estetici</h3>
+
+                <div th:each="s : ${aesthetic}" class="service-item">
+                    <details>
+                        <summary th:text="${s.name}"></summary>
+
+                        <div class="service-details">
+                            <img th:if="${s.imagePath != null}"
+                                 th:src="@{${s.imagePath}}"
+                                 th:alt="${s.name}"
+                                 class="service-image">
+
+                            <p th:text="${s.description}"></p>
+
+                            <p>
+                                <strong>Durata:</strong>
+                                <span th:text="${s.durationMinutes}"></span> min
+                            </p>
+
+                            <p>
+                                <strong>Prezzo:</strong>
+                                € <span th:text="${s.price}"></span>
+                            </p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="services-footer">
+            <a class="btn" th:href="@{/booking}">Prenota con noi</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

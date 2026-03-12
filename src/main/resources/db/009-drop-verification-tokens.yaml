@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 009-drop-verification-tokens
+      author: raffo
+      changes:
+        - dropTable:
+            tableName: verification_tokens

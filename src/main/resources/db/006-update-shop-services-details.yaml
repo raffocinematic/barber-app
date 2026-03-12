@@ -1,0 +1,88 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-update-shop-services-details
+      author: raffo
+      changes:
+        # ---------------- HAIR ----------------
+        - update:
+            tableName: shop_services
+            columns:
+              - column: { name: description, value: "Taglio classico personalizzato in base alla forma del viso e allo stile desiderato." }
+              - column: { name: duration_minutes, valueNumeric: 35 }
+              - column: { name: price, valueNumeric: 20.00 }
+              - column: { name: image_path, value: "/images/services/taglio.png" }
+            where: "category = 'HAIR' AND name = 'Taglio'"
+
+        - update:
+            tableName: shop_services
+            columns:
+              - column: { name: description, value: "Lavaggio professionale con prodotti delicati e styling finale." }
+              - column: { name: duration_minutes, valueNumeric: 15 }
+              - column: { name: price, valueNumeric: 8.00 }
+              - column: { name: image_path, value: "/images/services/shampoo.png" }
+            where: "category = 'HAIR' AND name = 'Shampoo'"
+
+        - update:
+            tableName: shop_services
+            columns:
+              - column: { name: description, value: "Servizio completo con taglio e shampoo finale per un look pulito e ordinato." }
+              - column: { name: duration_minutes, valueNumeric: 45 }
+              - column: { name: price, valueNumeric: 25.00 }
+              - column: { name: image_path, value: "/images/services/taglio-shampoo.png" }
+            where: "category = 'HAIR' AND name = 'Taglio + Shampoo'"
+
+        - update:
+            tableName: shop_services
+            columns:
+              - column: { name: description, value: "Rasatura completa dei capelli con rifinitura precisa e pulita." }
+              - column: { name: duration_minutes, valueNumeric: 30 }
+              - column: { name: price, valueNumeric: 15.00 }
+              - column: { name: image_path, value: "/images/services/rasatura-capelli.png" }
+            where: "category = 'HAIR' AND name = 'Rasatura completa'"
+
+        # ---------------- BEARD ----------------
+        - update:
+            tableName: shop_services
+            columns:
+              - column: { name: description, value: "Rasatura completa della barba con massima precisione e finitura pulita." }
+              - column: { name: duration_minutes, valueNumeric: 25 }
+              - column: { name: price, valueNumeric: 12.00 }
+              - column: { name: image_path, value: "/images/services/rasatura-barba.png" }
+            where: "category = 'BEARD' AND name = 'Rasatura completa'"
+
+        - update:
+            tableName: shop_services
+            columns:
+              - column: { name: description, value: "Regolazione e rifinitura della barba corta per un look ordinato." }
+              - column: { name: duration_minutes, valueNumeric: 20 }
+              - column: { name: price, valueNumeric: 10.00 }
+              - column: { name: image_path, value: "/images/services/taglio-barba-corta.png" }
+            where: "category = 'BEARD' AND name = 'Taglio corto'"
+
+        - update:
+            tableName: shop_services
+            columns:
+              - column: { name: description, value: "Definizione delle linee e modellatura della barba lunga con prodotti dedicati." }
+              - column: { name: duration_minutes, valueNumeric: 30 }
+              - column: { name: price, valueNumeric: 18.00 }
+              - column: { name: image_path, value: "/images/services/barba-lunga.png" }
+            where: "category = 'BEARD' AND name = 'Modellatura barba lunga'"
+
+        # ---------------- AESTHETIC ----------------
+        - update:
+            tableName: shop_services
+            columns:
+              - column: { name: description, value: "Pulizia e definizione delle sopracciglia per un aspetto curato." }
+              - column: { name: duration_minutes, valueNumeric: 10 }
+              - column: { name: price, valueNumeric: 6.00 }
+              - column: { name: image_path, value: "/images/services/sopracciglia.png" }
+            where: "category = 'AESTHETIC' AND name = 'Sopracciglia'"
+
+        - update:
+            tableName: shop_services
+            columns:
+              - column: { name: description, value: "Massaggio rilassante del viso per migliorare comfort e benessere." }
+              - column: { name: duration_minutes, valueNumeric: 20 }
+              - column: { name: price, valueNumeric: 15.00 }
+              - column: { name: image_path, value: "/images/services/massaggio-viso.png" }
+            where: "category = 'AESTHETIC' AND name = 'Massaggio viso'"

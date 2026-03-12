@@ -1,0 +1,62 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-seed-shop-services
+      author: raffo
+      changes:
+
+        # ---------------- HAIR ----------------
+        - insert:
+            tableName: shop_services
+            columns:
+              - column: { name: category, value: HAIR }
+              - column: { name: name, value: Taglio }
+
+        - insert:
+            tableName: shop_services
+            columns:
+              - column: { name: category, value: HAIR }
+              - column: { name: name, value: Shampoo }
+
+        - insert:
+            tableName: shop_services
+            columns:
+              - column: { name: category, value: HAIR }
+              - column: { name: name, value: Taglio + Shampoo }
+
+        - insert:
+            tableName: shop_services
+            columns:
+              - column: { name: category, value: HAIR }
+              - column: { name: name, value: Rasatura completa }
+
+        # ---------------- BEARD ----------------
+        - insert:
+            tableName: shop_services
+            columns:
+              - column: { name: category, value: BEARD }
+              - column: { name: name, value: Rasatura completa }
+
+        - insert:
+            tableName: shop_services
+            columns:
+              - column: { name: category, value: BEARD }
+              - column: { name: name, value: Taglio corto }
+
+        - insert:
+            tableName: shop_services
+            columns:
+              - column: { name: category, value: BEARD }
+              - column: { name: name, value: Modellatura barba lunga }
+
+        # ---------------- AESTHETIC ----------------
+        - insert:
+            tableName: shop_services
+            columns:
+              - column: { name: category, value: AESTHETIC }
+              - column: { name: name, value: Sopracciglia }
+
+        - insert:
+            tableName: shop_services
+            columns:
+              - column: { name: category, value: AESTHETIC }
+              - column: { name: name, value: Massaggio viso }

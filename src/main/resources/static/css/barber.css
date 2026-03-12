@@ -1,0 +1,608 @@
+/* barber.css - dark, modern, masculine barbershop vibe */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Inter:wght@400;600&display=swap');
+
+:root {
+  --bg: #0b0f14;
+  --panel: rgba(18, 24, 32, 0.82);
+  --panel-solid: #121820;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.65);
+  --accent: #c59d5f;     /* gold/copper */
+  --accent2: #f0c27b;    /* warm highlight */
+  --danger: #ff5a5f;
+  --ok: #2ecc71;
+
+  --radius: 18px;
+  --shadow: 0 22px 60px rgba(0, 0, 0, 0.55);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* Background with subtle pattern */
+  background:
+    radial-gradient(900px 500px at 15% 10%, rgba(197, 157, 95, 0.18), transparent 60%),
+    radial-gradient(700px 450px at 85% 15%, rgba(240, 194, 123, 0.10), transparent 55%),
+    radial-gradient(1000px 700px at 50% 120%, rgba(255, 255, 255, 0.06), transparent 60%),
+    linear-gradient(180deg, #06080c 0%, #0b0f14 55%, #0a0e13 100%);
+}
+
+/* Centering wrapper */
+.auth-wrap {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 48px 16px;
+}
+
+/* Card */
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative top line */
+.auth-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent);
+  opacity: 0.9;
+}
+
+/* Brand header */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.brand-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(197, 157, 95, 0.22), rgba(18, 24, 32, 0.15));
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.brand-badge span {
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--accent2);
+}
+
+.brand-title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-title .name {
+  font-family: "Oswald", sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.brand-title .tagline {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Title */
+.auth-card h1, .auth-card h2 {
+  margin: 10px 0 18px;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 34px;
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 14px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 6px;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(10, 14, 19, 0.65);
+  color: var(--text);
+  outline: none;
+  transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.input:focus {
+  border-color: rgba(197, 157, 95, 0.6);
+  box-shadow: 0 0 0 4px rgba(197, 157, 95, 0.18);
+}
+
+/* Button */
+.btn {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(197, 157, 95, 0.35);
+  background: linear-gradient(180deg, rgba(197, 157, 95, 0.35), rgba(197, 157, 95, 0.18));
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(197, 157, 95, 0.7);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+}
+
+.btn:active {
+  transform: translateY(0px);
+  box-shadow: none;
+}
+
+/* Messages */
+.alert {
+  border-radius: 12px;
+  padding: 12px 12px;
+  border: 1px solid var(--border);
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.alert.error {
+  border-color: rgba(255, 90, 95, 0.45);
+  background: rgba(255, 90, 95, 0.10);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.alert.success {
+  border-color: rgba(46, 204, 113, 0.40);
+  background: rgba(46, 204, 113, 0.10);
+}
+
+/* Footer link */
+.auth-footer {
+  margin-top: 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.auth-footer a {
+  color: var(--accent2);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px dashed rgba(240, 194, 123, 0.5);
+  padding-bottom: 1px;
+}
+
+.auth-footer a:hover {
+  border-bottom-color: rgba(240, 194, 123, 0.95);
+}
+
+/* Small screen spacing */
+@media (max-width: 420px) {
+  .auth-card { padding: 26px 18px; }
+  .auth-card h1, .auth-card h2 { font-size: 30px; }
+}
+
+/* Landing page helpers */
+.btn-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+@media (min-width: 520px) {
+  .btn-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.btn--small {
+  width: auto;              /* override full width */
+  padding: 12px 14px;
+  text-align: center;
+}
+
+.btn--ghost {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.btn--ghost:hover {
+  border-color: rgba(197, 157, 95, 0.7);
+}
+
+/* ===== Sidebar layout ===== */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  background: rgba(10, 14, 19, 0.75);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  z-index: 50;
+}
+
+.topbar-title {
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 1px;
+  font-size: 18px;
+  color: var(--text);
+}
+
+/* Make pages not hide behind topbar */
+.page {
+  padding-top: 80px;
+}
+
+.icon-btn {
+  border: 1px solid var(--border);
+  background: rgba(18, 24, 32, 0.65);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.icon-btn:hover {
+  border-color: rgba(197, 157, 95, 0.7);
+  transform: translateY(-1px);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+  z-index: 60;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -320px;         /* hidden */
+  width: 320px;
+  height: 100%;
+  background: rgba(18, 24, 32, 0.92);
+  border-right: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  box-shadow: 20px 0 60px rgba(0,0,0,0.45);
+  transition: left 220ms ease;
+  z-index: 70;
+  padding: 14px;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-name {
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 1px;
+}
+
+.brand-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 14px;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: var(--text);
+  background: rgba(10, 14, 19, 0.40);
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.sidebar-nav a:hover {
+  transform: translateY(-1px);
+  border-color: rgba(197, 157, 95, 0.5);
+}
+
+.sidebar-nav a.active {
+  border-color: rgba(197, 157, 95, 0.8);
+  background: rgba(197, 157, 95, 0.12);
+}
+
+/* ===== Hero Section ===== */
+
+.hero {
+  position: relative;
+  min-height: calc(100vh - 80px);
+  background: url("/images/napoli-barber.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      rgba(10,14,19,0.75),
+      rgba(10,14,19,0.85)
+  );
+}
+
+.hero-overlay {
+  position: relative;
+  text-align: center;
+  color: white;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.hero-title {
+  font-family: "Oswald", sans-serif;
+  font-size: 42px;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 24px;
+}
+
+.hero-btn {
+  width: auto;
+  padding: 14px 26px;
+  font-size: 16px;
+}
+
+/* ===========================
+   SERVICES PAGE
+=========================== */
+
+.services-card {
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 40px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #111826, #0c111a);
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    color: white;
+}
+
+.services-card h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.services-card .subtitle {
+    text-align: center;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 40px;
+}
+
+/* 3 column grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* Single column */
+.service-column {
+    background: rgba(255,255,255,0.04);
+    padding: 20px;
+    border-radius: 12px;
+    transition: 0.3s ease;
+}
+
+.service-column:hover {
+    background: rgba(255,255,255,0.08);
+    transform: translateY(-4px);
+}
+
+/* Column title */
+.service-column h3 {
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 8px;
+    font-size: 18px;
+    color: #d4af37; /* gold accent */
+}
+
+/* Service list */
+.service-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.service-column li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.service-column li:hover {
+    color: #d4af37;
+}
+
+/* Footer button */
+.services-footer {
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+
+    background-image: url('/images/barberLandingPage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 40px;
+    border-radius: 12px;
+}
+
+.hero-title {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.service-item {
+    margin-bottom: 12px;
+}
+
+.service-item details {
+    background: rgba(255,255,255,0.03);
+    border-radius: 10px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: 0.3s ease;
+}
+
+.service-item details[open] {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(212, 175, 55, 0.25);
+}
+
+.service-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+    padding: 6px 0;
+    color: white;
+}
+
+.service-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.service-item summary::after {
+    content: "＋";
+    float: right;
+    color: #d4af37;
+    font-size: 18px;
+}
+
+.service-item details[open] summary::after {
+    content: "−";
+}
+
+.service-details {
+    margin-top: 12px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.service-image {
+    width: 100%;
+    max-width: 180px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    display: block;
+}

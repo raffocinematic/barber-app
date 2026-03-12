@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registrazione completata</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/barber.css}">
+</head>
+<body>
+<div class="auth-wrap">
+    <div class="auth-card">
+        <h2>Registrazione completata</h2>
+        <p th:text="${message}"></p>
+
+        <p>
+            <a th:href="@{${verifyLink}}" class="btn">Verifica email</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>

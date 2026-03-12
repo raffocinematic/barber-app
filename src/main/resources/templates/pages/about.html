@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>About us - Barber App</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/barber.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar('about')}"></div>
+
+<div class="page">
+    <div class="auth-wrap">
+        <div class="auth-card">
+            <h2>About us</h2>
+
+            <p style="color: rgba(255,255,255,0.75); line-height: 1.6;">
+                Siamo un barber shop nato dall’idea di riportare lo stile classico in chiave moderna:
+                attenzione al dettaglio, atmosfera rilassata e tagli puliti.
+            </p>
+
+            <p style="color: rgba(255,255,255,0.75); line-height: 1.6;">
+                Dal primo giorno puntiamo su qualità e costanza: consulenza sul look, finiture precise,
+                e una cura particolare per barba e capelli.
+            </p>
+
+            <p style="color: rgba(255,255,255,0.65); margin-top: 12px;">
+                📍 Via Esempio 10, Napoli — 🕒 Lun-Sab 09:00–19:30
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

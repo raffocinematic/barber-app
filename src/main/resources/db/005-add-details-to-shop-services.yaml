@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-add-details-to-shop-services
+      author: raffo
+      changes:
+        - addColumn:
+            tableName: shop_services
+            columns:
+              - column:
+                  name: description
+                  type: VARCHAR(500)
+
+              - column:
+                  name: duration_minutes
+                  type: INT
+
+              - column:
+                  name: price
+                  type: DECIMAL(10,2)
+
+              - column:
+                  name: image_path
+                  type: VARCHAR(255)

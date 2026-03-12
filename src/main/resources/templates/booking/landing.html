@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Barber App</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/barber.css}">
+</head>
+<body>
+
+<!-- Sidebar fragment -->
+<div th:replace="~{fragments/sidebar :: sidebar('booking')}"></div>
+
+<section class="hero">
+
+    <div class="hero-overlay">
+        <h1 class="hero-title">Stile, Tradizione, Precisione</h1>
+        <p class="hero-subtitle">
+            L’arte del grooming maschile nel cuore di Napoli.
+        </p>
+
+        <a class="btn hero-btn"
+           th:href="@{/booking/date(serviceType='HAIRCUT')}">
+            Prenota ora
+        </a>
+    </div>
+
+</section>
+
+</body>
+</html>
