@@ -38,3 +38,11 @@ databaseChangeLog:
   - include:
       file: 010-remove-email-auth-columns-from-users.yaml
       relativeToChangelogFile: true
+
+  - include:
+      file: 011-refactor-appointments-duration.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: 012-create-appointment-services.yaml
+      relativeToChangelogFile: true

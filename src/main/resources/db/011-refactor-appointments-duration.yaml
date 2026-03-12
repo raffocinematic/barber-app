@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 011-refactor-appointments-duration
+      author: raffo
+      changes:
+        - addColumn:
+            tableName: appointments
+            columns:
+              - column:
+                  name: duration_minutes
+                  type: INT
+                  defaultValueNumeric: 30
+                  constraints:
+                    nullable: false
+
+        - dropColumn:
+            tableName: appointments
+            columnName: service_type

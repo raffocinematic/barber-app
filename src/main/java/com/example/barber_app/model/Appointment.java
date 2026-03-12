@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Table(name = "appointments")
@@ -11,26 +14,38 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Appointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    //this means that many appointments can belong to a single user, every appointment has a user.
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     private User customer;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private ServiceType serviceType;
-
-    @Column(nullable = false)
+    @Column(name = "start_time", nullable = false)
     private LocalDateTime startTime;
 
-    @Column(nullable = false)
+    @Column(name = "end_time", nullable = false)
     private LocalDateTime endTime;
 
-    @Column(nullable = false)
-    private String status; // "BOOKED", "CANCELLED"...
+    @Column(name = "duration_minutes", nullable = false)
+    private Integer durationMinutes;
+
+    @Column(nullable = false, length = 30)
+    private String status;
+
+    //this means that an appointment can have more than 1 service
+    //and a service can stay in more appointments
+    @ManyToMany
+    @JoinTable(
+            name = "appointment_services",
+            joinColumns = @JoinColumn(name = "appoinment_id"),
+            inverseJoinColumns = @JoinColumn(name = "service_id")
+    )
+    private List<ShopService> services = new ArrayList<>();
 
 }
