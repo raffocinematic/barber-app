@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 013-drop-old-appointments-structure
+      author: raffo
+      changes:
+        - dropTable:
+            tableName: appointment_services
+        - dropTable:
+            tableName: appointments

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Scegli la data</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/barber.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar('booking')}"></div>
+
+<div class="page">
+    <div class="auth-wrap">
+        <div class="auth-card">
+
+            <h2>Scegli la data</h2>
+            <p class="subtitle">
+                Seleziona il giorno in cui vuoi prenotare.
+            </p>
+
+            <p th:if="${error}" class="form-error" th:text="${error}"></p>
+
+            <form th:action="@{/booking/slots}" th:object="${form}" method="post">
+
+                <!-- keep selected services from previous step -->
+                <input type="hidden"
+                       th:each="serviceId : *{serviceIds}"
+                       name="serviceIds"
+                       th:value="${serviceId}" />
+
+                <div class="form-group">
+                    <label for="date">Data</label>
+                    <input class="input"
+                           id="date"
+                           type="date"
+                           th:field="*{date}"
+                           required>
+                </div>
+
+                <button type="submit" class="btn">Mostra slot disponibili</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

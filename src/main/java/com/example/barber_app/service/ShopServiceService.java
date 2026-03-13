@@ -12,17 +12,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ShopServiceService {
 
-    private final ShopServiceRepository repo;
+    private final ShopServiceRepository shopServiceRepository;
 
     public List<ShopService> getHairServices() {
-        return repo.findAllByCategoryOrderByNameAsc(ServiceCategory.HAIR);
+        return shopServiceRepository.findAllByCategoryOrderByNameAsc(ServiceCategory.HAIR);
     }
 
     public List<ShopService> getBeardServices() {
-        return repo.findAllByCategoryOrderByNameAsc(ServiceCategory.BEARD);
+        return shopServiceRepository.findAllByCategoryOrderByNameAsc(ServiceCategory.BEARD);
     }
 
     public List<ShopService> getAestheticServices() {
-        return repo.findAllByCategoryOrderByNameAsc(ServiceCategory.AESTHETIC);
+        return shopServiceRepository.findAllByCategoryOrderByNameAsc(ServiceCategory.AESTHETIC);
     }
+
+
 }

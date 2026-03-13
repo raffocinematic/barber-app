@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Prenotazione confermata</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/barber.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar('booking')}"></div>
+
+<div class="page">
+    <div class="auth-wrap">
+        <div class="auth-card">
+
+            <h2>Prenotazione confermata ✅</h2>
+            <p class="subtitle">
+                La tua prenotazione è stata registrata correttamente.
+            </p>
+
+            <div class="booking-summary">
+
+                <div class="summary-block">
+                    <h3>Servizi selezionati</h3>
+                    <ul class="summary-list">
+                        <li th:each="service : ${appointment.services}"
+                            th:text="${service.name}"></li>
+                    </ul>
+                </div>
+
+                <div class="summary-block">
+                    <h3>Dettagli appuntamento</h3>
+
+                    <p>
+                        <strong>Inizio:</strong>
+                        <span th:text="${#temporals.format(appointment.startTime, 'dd/MM/yyyy HH:mm')}"></span>
+                    </p>
+
+                    <p>
+                        <strong>Fine:</strong>
+                        <span th:text="${#temporals.format(appointment.endTime, 'dd/MM/yyyy HH:mm')}"></span>
+                    </p>
+
+                    <p>
+                        <strong>Durata:</strong>
+                        <span th:text="${appointment.durationMinutes}"></span> minuti
+                    </p>
+
+                    <p>
+                        <strong>Stato:</strong>
+                        <span th:text="${appointment.status}"></span>
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="services-footer">
+                <a class="btn" th:href="@{/booking/mine}">Le mie prenotazioni</a>
+            </div>
+
+            <div class="services-footer" style="margin-top: 12px;">
+                <a class="btn btn--ghost" th:href="@{/booking}">Nuova prenotazione</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

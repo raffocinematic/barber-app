@@ -23,7 +23,7 @@ public class Appointment {
 
     //this means that many appointments can belong to a single user, every appointment has a user.
     @ManyToOne(optional = false)
-    @JoinColumn(name = "customer_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User customer;
 
     @Column(name = "start_time", nullable = false)
@@ -43,7 +43,7 @@ public class Appointment {
     @ManyToMany
     @JoinTable(
             name = "appointment_services",
-            joinColumns = @JoinColumn(name = "appoinment_id"),
+            joinColumns = @JoinColumn(name = "appointment_id"),
             inverseJoinColumns = @JoinColumn(name = "service_id")
     )
     private List<ShopService> services = new ArrayList<>();

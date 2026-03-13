@@ -46,3 +46,11 @@ databaseChangeLog:
   - include:
       file: 012-create-appointment-services.yaml
       relativeToChangelogFile: true
+
+  - include:
+      file: 013-drop-old-appointments-structure.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: 014-create-new-appointments-structure.yaml
+      relativeToChangelogFile: true

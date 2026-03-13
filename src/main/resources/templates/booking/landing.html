@@ -1,30 +1,76 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Barber App</title>
+    <title>Prenota con noi</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/barber.css}">
 </head>
 <body>
 
-<!-- Sidebar fragment -->
 <div th:replace="~{fragments/sidebar :: sidebar('booking')}"></div>
 
-<section class="hero">
+<div class="page">
+    <div class="services-card">
 
-    <div class="hero-overlay">
-        <h1 class="hero-title">Stile, Tradizione, Precisione</h1>
-        <p class="hero-subtitle">
-            L’arte del grooming maschile nel cuore di Napoli.
+        <h1>Prenota con noi</h1>
+        <p class="subtitle">
+            Seleziona uno o due servizi per iniziare la prenotazione.
         </p>
 
-        <a class="btn hero-btn"
-           th:href="@{/booking/date(serviceType='HAIRCUT')}">
-            Prenota ora
-        </a>
-    </div>
+        <p th:if="${error}" class="form-error" th:text="${error}"></p>
 
-</section>
+        <form th:action="@{/booking/date}" th:object="${form}" method="post">
+
+            <div class="services-grid">
+
+                <div class="service-column">
+                    <h3>Capelli</h3>
+
+                    <div th:each="service : ${hairServices}" class="service-item">
+                        <label class="service-checkbox">
+                            <input type="checkbox"
+                                   th:field="*{serviceIds}"
+                                   th:value="${service.id}">
+                            <span th:text="${service.name}"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="service-column">
+                    <h3>Barba</h3>
+
+                    <div th:each="service : ${beardServices}" class="service-item">
+                        <label class="service-checkbox">
+                            <input type="checkbox"
+                                   th:field="*{serviceIds}"
+                                   th:value="${service.id}">
+                            <span th:text="${service.name}"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="service-column">
+                    <h3>Trattamenti Estetici</h3>
+
+                    <div th:each="service : ${aestheticServices}" class="service-item">
+                        <label class="service-checkbox">
+                            <input type="checkbox"
+                                   th:field="*{serviceIds}"
+                                   th:value="${service.id}">
+                            <span th:text="${service.name}"></span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="services-footer">
+                <button type="submit" class="btn">Continua</button>
+            </div>
+
+        </form>
+    </div>
+</div>
 
 </body>
 </html>
