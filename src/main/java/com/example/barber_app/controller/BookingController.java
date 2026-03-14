@@ -168,7 +168,8 @@ public class BookingController {
         System.out.println("LOGGED USER = " + auth.getName());
         System.out.println("APPOINMENTS FOUND = " + appointments.size());
 
-        model.addAttribute("appoinments", appointments);
+        model.addAttribute("appointments", appointments);
+
         return "booking/my-appointments";
     }
 
