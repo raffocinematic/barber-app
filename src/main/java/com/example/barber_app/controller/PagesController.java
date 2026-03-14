@@ -27,4 +27,9 @@ public class PagesController {
         return "pages/services";
     }
 
+    @GetMapping("/home")
+    public String home() {
+        return ("pages/home");
+    }
+
 }

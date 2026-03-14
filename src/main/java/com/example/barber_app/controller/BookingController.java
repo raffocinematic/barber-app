@@ -43,7 +43,7 @@ public class BookingController {
 
         model.addAttribute("form", form);
         model.addAttribute("hairServices", shopServiceService.getHairServices());
-        model.addAttribute("beardServices", shopServiceService.getAestheticServices());
+        model.addAttribute("beardServices", shopServiceService.getBeardServices());
         model.addAttribute("aestheticServices", shopServiceService.getAestheticServices());
 
         return "booking/landing";
