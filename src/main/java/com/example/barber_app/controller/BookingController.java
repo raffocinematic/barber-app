@@ -163,7 +163,12 @@ public class BookingController {
 
     @GetMapping("/mine")
     public String mine(Authentication auth, Model model) {
-        model.addAttribute("appoinments", bookingService.myAppointments(auth.getName()));
+        var appointments = bookingService.myAppointments(auth.getName());
+
+        System.out.println("LOGGED USER = " + auth.getName());
+        System.out.println("APPOINMENTS FOUND = " + appointments.size());
+
+        model.addAttribute("appoinments", appointments);
         return "booking/my-appointments";
     }
 

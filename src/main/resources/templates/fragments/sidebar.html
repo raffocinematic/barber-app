@@ -34,6 +34,9 @@
             <a th:href="@{/about}" th:classappend="${active == 'about'} ? ' active' : ''">About us</a>
             <a th:href="@{/services}" th:classappend="${active == 'services'} ? ' active' : ''">I nostri servizi</a>
             <a th:href="@{/booking}" th:classappend="${active == 'booking'} ? ' active' : ''">Prenota con noi</a>
+            <li>
+                <a th:href="@{/booking/mine}">I miei appuntamenti</a>
+            </li>
         </nav>
     </aside>
 

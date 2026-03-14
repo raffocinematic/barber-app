@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div th:replace="~{fragments/sidebar :: sidebar('booking')}"></div>
+<div th:replace="~{fragments/sidebar :: sidebar('mine')}"></div>
 
 <div class="page">
     <div class="services-card">
@@ -24,8 +24,8 @@
         <div th:if="${appointments != null and !appointments.isEmpty()}" class="appointments-list">
 
             <div th:each="appointment : ${appointments}" class="appointment-card">
-
                 <div class="summary-block">
+
                     <h3>
                         Prenotazione del
                         <span th:text="${#temporals.format(appointment.startTime, 'dd/MM/yyyy')}"></span>
@@ -52,11 +52,12 @@
                         <strong>Servizi:</strong>
                         <ul class="summary-list">
                             <li th:each="service : ${appointment.services}"
-                                th:text="${service.name}"></li>
+                                th:text="${service.name}">
+                            </li>
                         </ul>
                     </div>
-                </div>
 
+                </div>
             </div>
 
         </div>

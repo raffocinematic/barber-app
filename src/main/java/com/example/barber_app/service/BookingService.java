@@ -55,10 +55,14 @@ public class BookingService {
 
     @Transactional
     public Appointment book(String username, LocalDate date, LocalTime start, List<Long> serviceIds) {
+        System.out.println("BOOKING USERNAME = " + username);
+
         validateWorkingDay(date);
 
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalArgumentException("User not valid."));
+
+        System.out.println("BOOKING USER ID = " + user.getId());
 
         List<ShopService> services = loadAndValidateServices(serviceIds);
         int durationMinutes = calculateDurationMinutes(services);
@@ -89,10 +93,14 @@ public class BookingService {
     }
 
     public List<Appointment> myAppointments(String username) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow();
+        System.out.println("MY APPOINTMENTS USERNAME = " + username);
 
-        return appointmentRepository.findByCustomer(user.getId());
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("User not found."));
+
+        System.out.println("MY APPOINTMENTS USERNAME = " + username);
+
+        return appointmentRepository.findByUserId(user.getId());
     }
 
     /**
