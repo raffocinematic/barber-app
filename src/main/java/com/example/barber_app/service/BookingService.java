@@ -11,10 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.*;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-// TO STUDY / COMMENT !
+
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +24,13 @@ public class BookingService {
     private final AppointmentRepository appointmentRepository;
     private final UserRepository userRepository;
     private final ShopServiceRepository shopServiceRepository;
+
+    /**
+     *
+     * @param date
+     * @param serviceIds
+     * @return
+     */
 
     public List<LocalTime> availableSlots(LocalDate date, List<Long> serviceIds) {
         validateWorkingDay(date);
@@ -48,21 +56,33 @@ public class BookingService {
                 date.atTime(close)
         );
 
+        //with this, you should not be allowed to see past slots because as peer business logic you can't book in the past.
+        //better to filter this in the backend logic and not in the UX.
+        LocalDateTime now = LocalDateTime.now();
+
         return allSlots.stream()
+                .filter(slot -> LocalDateTime.of(date, slot).isAfter(now))
                 .filter(slot -> isFree(date, slot, appointmentDuration, bookedAppointments))
                 .toList();
     }
 
+    /**
+     *Fundamental business logic here!
+     *
+     * @param username
+     * @param date
+     * @param start
+     * @param serviceIds
+     * @return
+     */
+
     @Transactional
     public Appointment book(String username, LocalDate date, LocalTime start, List<Long> serviceIds) {
-        System.out.println("BOOKING USERNAME = " + username);
 
         validateWorkingDay(date);
 
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalArgumentException("User not valid."));
-
-        System.out.println("BOOKING USER ID = " + user.getId());
 
         List<ShopService> services = loadAndValidateServices(serviceIds);
         int durationMinutes = calculateDurationMinutes(services);
@@ -73,10 +93,17 @@ public class BookingService {
         LocalTime opening = LocalTime.of(9, 0);
         LocalTime closing = LocalTime.of(18, 0);
 
+        // 1. block past appointments
+        if(!startDateTime.isAfter(LocalDateTime.now())) {
+            throw new IllegalArgumentException("You cannot book an appointment in the past.");
+        }
+
+        // 2. block appointments outside working hours
         if (start.isBefore(opening) || endDateTime.toLocalTime().isAfter(closing)) {
             throw new IllegalArgumentException("Selected slot is outside working hours.");
         }
 
+        // 3. block overlapping appointments
         if (!appointmentRepository.findOverlapping(startDateTime, endDateTime).isEmpty()) {
             throw new IllegalStateException("Slot no longer available.");
         }
