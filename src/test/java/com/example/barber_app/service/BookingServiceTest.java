@@ -1,5 +1,6 @@
 package com.example.barber_app.service;
 
+import com.example.barber_app.model.Appointment;
 import com.example.barber_app.model.ShopService;
 import com.example.barber_app.model.User;
 import com.example.barber_app.repository.AppointmentRepository;
@@ -12,12 +13,14 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -78,5 +81,76 @@ public class BookingServiceTest {
 
 
     }
+
+    @Test
+    void shouldThrowExceptionWhenSelectingMoreThanTwoServices() {
+        User user = buildUser();
+
+        when(userRepository.findByUsername("Raffo")).thenReturn(Optional.of(user));
+
+        assertThrows(IllegalArgumentException.class, () ->
+                bookingService.book(
+                        "Raffo",
+                        nextNonMonday(),
+                        LocalTime.of(10, 0),
+                        List.of(10L)
+                )
+        );
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------- utility methods used for JUNIT tests purposes ------------------------------------
+
+    private User buildUser() {
+        User user = new User();
+        user.setId(1L);
+        user.setUsername("Raffo");
+        user.setPasswordHash("hashedPassword");
+        user.setRole("ROLE_USER");
+        return user;
+    }
+
+    private ShopService buildService(Long id, String name) {
+        ShopService service = new ShopService();
+        service.setId(id);
+        service.setName(name);
+        return service;
+    }
+
+    private LocalDate nextNonMonday() {
+        LocalDate date = LocalDate.now().plusDays(1);
+        while (date.getDayOfWeek().getValue() == 1) {
+            date = date.plusDays(1);
+        }
+        return date;
+    }
+
+    private LocalDate nextMonday() {
+        LocalDate date = LocalDate.now();
+        while (date.getDayOfWeek().getValue() != 1) {
+            date = date.plusDays(1);
+        }
+        return date;
+    }
+
 
 }
